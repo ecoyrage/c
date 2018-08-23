@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<div style="width:100%;">
+    <div class='margin-15'><span><img src='http://news.50waizhuan.com/1dafcc31-422f-4252-99ee-9d53eee3145c.jpg'  width='100%'></span></div>
+</div>
+</body>
+</html>
+<script>
+    var timeOutEvent=0;
+    $(function(){
+        $("span img").on({
+            touchstart: function(e){
+                timeOutEvent = setTimeout("longPress('{\\\"src\\\":\\\""+this.src+"\\\"}')",500);
+                e.preventDefault();
+            },
+            touchmove: function(){
+                clearTimeout(timeOutEvent);
+                timeOutEvent = 0;
+            },
+            touchend: function(){
+                clearTimeout(timeOutEvent);
+                if(timeOutEvent!=0){
+                    // alert("你这是点击，不是长按");
+                }
+                return false;
+            }
+        })
+    });
+
+
+
+    function longPress(e){
+        console.log(e);
+        timeOutEvent = 0;
+        alert("长按事件触发发");
+    }
+
+</script>
